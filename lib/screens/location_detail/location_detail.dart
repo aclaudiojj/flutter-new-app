@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_other_app/models/location.dart';
 import 'package:my_other_app/widgets/image_banner.dart';
+import 'package:my_other_app/widgets/location_tile.dart';
 import 'text_section.dart';
 
 class LocationDetail extends StatelessWidget {
@@ -14,17 +15,24 @@ class LocationDetail extends StatelessWidget {
     // final Location location = locations.first;
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(location.name),
-      ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          ImageBanner(location.imagePath),
-        ]..addAll(this.textSections(location)),
-      ),
-    );
+        appBar: AppBar(
+          title: Text(location.name),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              ImageBanner(assetPath: location.imagePath),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.0),
+                child: LocationTile(
+                  location: location,
+                ),
+              )
+            ]..addAll(this.textSections(location)),
+          ),
+        ));
   }
 
   List<Widget> textSections(Location location) {

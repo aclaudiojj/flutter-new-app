@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_other_app/models/location.dart';
 import 'package:my_other_app/routes.dart';
+import 'package:my_other_app/widgets/image_banner.dart';
 
 class Locations extends StatelessWidget {
   @override
@@ -11,13 +12,10 @@ class Locations extends StatelessWidget {
       appBar: AppBar(
         title: Text('Locations'),
       ),
-      body: ListView(
-        children: locations
-            .map((location) => GestureDetector(
-                  child: Text(location.name),
-                  onTap: () => this._onLocationTap(context, location.id),
-                ))
-            .toList(),
+      body: ListView.builder(
+        itemCount: locations.length,
+        itemBuilder: (context, index) =>
+            _itemBuilder(context, locations[index]),
       ),
     );
   }
@@ -26,5 +24,12 @@ class Locations extends StatelessWidget {
     Navigator.pushNamed(context, Routes.detail(), arguments: {
       'id': locationId,
     });
+  }
+
+  Widget _itemBuilder(BuildContext context, Location location) {
+    return GestureDetector(
+      child: ImageBanner(location.imagePath),
+      onTap: () => this._onLocationTap(context, location.id),
+    );
   }
 }

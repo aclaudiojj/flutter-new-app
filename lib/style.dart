@@ -1,28 +1,44 @@
 import 'package:flutter/material.dart';
 
-const LargeTextSize = 26.0;
-const MediumTextSize = 20.0;
-const BodyTextSize = 16.0;
+class Style {
+  static const LargeTextSize = 26.0;
+  static const MediumTextSize = 20.0;
+  static const BodyTextSize = 16.0;
 
-const String FontNameDefault = 'Montserrat';
+  static const String FontNameDefault = 'Montserrat';
 
-const AppBarTextStye = TextStyle(
-  fontFamily: FontNameDefault,
-  fontWeight: FontWeight.w300,
-  fontSize: MediumTextSize,
-  color: Colors.white,
-);
+  static const AppBarTextStye = TextStyle(
+    fontFamily: FontNameDefault,
+    fontWeight: FontWeight.w300,
+    fontSize: MediumTextSize,
+    color: Colors.white,
+  );
 
-const TitleTextStyle = TextStyle(
-  fontFamily: FontNameDefault,
-  fontWeight: FontWeight.w300,
-  fontSize: LargeTextSize,
-  color: Colors.black,
-);
+  static const TitleTextStyle = TextStyle(
+    fontFamily: FontNameDefault,
+    fontWeight: FontWeight.w300,
+    fontSize: LargeTextSize,
+    color: Colors.black,
+  );
 
-const Body1TextStyle = TextStyle(
-  fontFamily: FontNameDefault,
-  fontWeight: FontWeight.w300,
-  fontSize: BodyTextSize,
-  color: Colors.black,
-);
+  static const Body1TextStyle = TextStyle(
+    fontFamily: FontNameDefault,
+    fontWeight: FontWeight.w300,
+    fontSize: BodyTextSize,
+    color: Colors.black,
+  );
+
+  static ThemeData data() {
+    return ThemeData(
+      appBarTheme: AppBarTheme(
+        textTheme: TextTheme(
+          title: AppBarTextStye,
+        ),
+      ),
+      textTheme: TextTheme(
+        title: TitleTextStyle,
+        body1: Body1TextStyle,
+      ),
+    );
+  }
+}
